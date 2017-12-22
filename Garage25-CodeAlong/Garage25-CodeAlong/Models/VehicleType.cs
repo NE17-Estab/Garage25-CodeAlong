@@ -10,7 +10,7 @@ namespace Garage25_CodeAlong.Models
         public int Id { get; set; }
         public string TypeName { get; set; }
 
-        public virtual ICollection<ParkedVehicle> ParkedVehicle { get; set; }
+        public virtual ICollection<ParkedVehicle> ParkedVehicles { get; set; }
 
 
     }

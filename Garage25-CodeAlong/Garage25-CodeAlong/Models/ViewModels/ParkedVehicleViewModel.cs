@@ -14,9 +14,9 @@ namespace Garage25_CodeAlong.Models.ViewModels
         public string Model { get; set; }
         public string Brand { get; set; }
         public int NoOfWheels { get; set; }
-        public DateTime ParkingTime { get; set; }
+        //public DateTime ParkingTime { get; set; }
 
-        public SelectList Members { get; set; }
+        public SelectList Members { get; set; }                          //we have used  selectlist  in controller and here as well
         public SelectList Types { get; set; }
         public string MemberId { get; set; }
         public string TypesId { get; set; }

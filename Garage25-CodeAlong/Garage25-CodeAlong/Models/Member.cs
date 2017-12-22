@@ -19,8 +19,7 @@ namespace Garage25_CodeAlong.Models
         public String Address { get; set; }
         public string PhoneNum { get; set; }
 
-    
-        public virtual ParkedVehicle ParkedVehicle { get; set; }
 
+        public virtual ICollection<ParkedVehicle> ParkedVehicles { get; set; }
     }
 }

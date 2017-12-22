@@ -38,12 +38,13 @@ namespace Garage25_CodeAlong.Controllers
             return View(parkedVehicle);
         }
 
+
         // GET: Garage/Create
         public ActionResult Park()
         {
             ParkedVehicleViewModel model = new ParkedVehicleViewModel();
-           model.Members = new SelectList(db.Members, "Id", "FName");         //viewbag acts like a dictionary  and we have deleted automated generated create view to create manually to this actionresult Park instead of viewbag we have modified like dis
-           model.Types = new SelectList(db.VehicleTypes, "Id", "TypeName");
+            model.Members = new SelectList(db.Members, "Id", "FName");         //viewbag acts like a dictionary  and we have deleted automated generated create view to create manually to this actionresult Park instead of viewbag we have modified like dis
+            model.Types = new SelectList(db.VehicleTypes, "Id", "TypeName");
             return View(model);
         }
 
@@ -57,8 +58,8 @@ namespace Garage25_CodeAlong.Controllers
             if (ModelState.IsValid)
             {
                 ParkedVehicle parkedVehicle = new ParkedVehicle();                                 //we have added/edited code here
-                parkedVehicle.Member = db.Members.FirstOrDefault(x=>x.Id.Tostring()==parkVehicleviewModel.MemberId);
-                                                                                                           //bcoz its a string we are adding 
+                parkedVehicle.MemberId = int.Parse(parkVehicleviewModel.MemberId);                 //giving here like dis becoz we  have changed e-r diagram as 0->many(member->parkedvehicle)
+                                                                                                   //bcoz its a string we are adding 
                 parkedVehicle.TypeId = int.Parse(parkVehicleviewModel.TypesId);
                 parkedVehicle.Brand = parkVehicleviewModel.Brand;
                 parkedVehicle.Color = parkVehicleviewModel.Color;
@@ -71,9 +72,10 @@ namespace Garage25_CodeAlong.Controllers
             }
 
             parkVehicleviewModel.Members = new SelectList(db.Members, "Id", "FName", parkVehicleviewModel.MemberId);
-            parkVehicleviewModel.Types = new SelectList(db.VehicleTypes, "Id", "TypeName", parkVehicleviewModel.TypesId);     
+            parkVehicleviewModel.Types = new SelectList(db.VehicleTypes, "Id", "TypeName", parkVehicleviewModel.TypesId);         //instead of viewbag changed to selectlist
             return View(parkVehicleviewModel);
         }
+
 
         // GET: Garage/Edit/5
         public ActionResult Edit(int? id)
@@ -87,7 +89,7 @@ namespace Garage25_CodeAlong.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.Members, "Id", "FName", parkedVehicle.Id);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "FName", parkedVehicle.MemberId);
             ViewBag.TypeId = new SelectList(db.VehicleTypes, "Id", "TypeName", parkedVehicle.TypeId);
             return View(parkedVehicle);
         }
@@ -105,7 +107,7 @@ namespace Garage25_CodeAlong.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.Members, "Id", "FName", parkedVehicle.Id);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "FName", parkedVehicle.MemberId);
             ViewBag.TypeId = new SelectList(db.VehicleTypes, "Id", "TypeName", parkedVehicle.TypeId);
             return View(parkedVehicle);
         }

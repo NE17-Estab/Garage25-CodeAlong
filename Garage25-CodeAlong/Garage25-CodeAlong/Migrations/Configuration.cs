@@ -70,7 +70,7 @@ namespace Garage25_CodeAlong.Migrations
                     Model = "S80",
                     Color = "Rust",
                     ParkingTime = DateTime.Now.AddHours(-1),
-                    Member = context.Members.ToList()[0],            //becoz we have given [required] for member in parked vehicel
+                    MemberId= context.Members.ToList()[0].Id,            //becoz we have given [required] for member in parked vehicel
                     TypeId=context.VehicleTypes.ToList()[0].Id
 
                 },
@@ -83,7 +83,7 @@ namespace Garage25_CodeAlong.Migrations
                     Model = "Razor",
                     Color = "Black",
                     ParkingTime = DateTime.Now.AddHours(-9000),
-                    Member = context.Members.ToList()[2],
+                    MemberId = context.Members.ToList()[2].Id,
                     TypeId = context.VehicleTypes.ToList()[3].Id
 
                 },
@@ -95,7 +95,7 @@ namespace Garage25_CodeAlong.Migrations
                      Model = "Razor",
                      Color = "Black",
                      ParkingTime = DateTime.Now.AddHours(-5),
-                     Member= context.Members.ToList()[1],
+                     MemberId= context.Members.ToList()[1].Id,
                      TypeId = context.VehicleTypes.ToList()[4].Id
 
                  }

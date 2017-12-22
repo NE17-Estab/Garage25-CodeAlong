@@ -18,11 +18,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RegNum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RegNum, new { htmlAttributes = new { @class = "form-control" } })        @*//these two forms added in the view*@
+                @Html.EditorFor(model => model.RegNum, new { htmlAttributes = new { @class = "form-control" } })     
                 @Html.ValidationMessageFor(model => model.RegNum, "", new { @class = "text-danger" })
             </div>
         </div>
-
+                                              
         <div class="form-group">
             @Html.LabelFor(model => model.Members, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -31,7 +31,7 @@
                 @Html.DropDownListFor(model => Model.MemberId,Model.Members, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Members, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>@*//these two forms added in the view*@@*//here we have added instead of viewbagsin controller and edited here as well*@
         <div class="form-group">
             @Html.LabelFor(model => model.Types, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

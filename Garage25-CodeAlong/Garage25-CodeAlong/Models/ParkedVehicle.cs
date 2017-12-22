@@ -23,8 +23,8 @@ namespace Garage25_CodeAlong.Models
 
         [ForeignKey("TypeId")]
         public virtual VehicleType VehicleType { get; set; }                 //using this annotation means telling the vehicletype id that it should conect to TYPEID
-        [Required]
+        //[Required]
         public virtual  Member Member{ get; set; }
-        public object TypesId { get; internal set; }
+        //public object TypesId { get; internal set; }
     }
 }
