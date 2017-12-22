@@ -59,7 +59,7 @@ namespace Garage25_CodeAlong.Controllers
             if (ModelState.IsValid)
             {
                 ParkedVehicle parkedVehicle = new ParkedVehicle();
-                parkedVehicle.Member = db.Members.FirstOrDefault(x=>x.Id.ToString() == parkVehicleViewModel.MemberId);
+                parkedVehicle.MemberId = int.Parse(parkVehicleViewModel.MemberId);
                 parkedVehicle.TypeId = int.Parse(parkVehicleViewModel.TypesId);
                 parkedVehicle.Brand = parkVehicleViewModel.Brand;
                 parkedVehicle.Color = parkVehicleViewModel.Color;

@@ -23,7 +23,7 @@ namespace Garage25_CodeAlong.Models
 
         [ForeignKey("TypeId")]
         public virtual VehicleType VehicleType {get;set;}
-        [Required]
+        
         public virtual Member Member { get; set; }
     }
 }
