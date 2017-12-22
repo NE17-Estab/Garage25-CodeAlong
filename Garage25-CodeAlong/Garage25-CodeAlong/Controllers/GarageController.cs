@@ -54,18 +54,27 @@ namespace Garage25_CodeAlong.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Park([Bind(Include = "Id,RegNr,Color,Model,Brand,NrOfWheels,ParkingTime,TypeId,MemberId")] ParkedVehicle parkedVehicle)
+        public ActionResult Park(ParkVehicleViewModel parkVehicleViewModel)
         {
             if (ModelState.IsValid)
             {
+                ParkedVehicle parkedVehicle = new ParkedVehicle();
+                parkedVehicle.Member = db.Members.FirstOrDefault(x=>x.Id.ToString() == parkVehicleViewModel.MemberId);
+                parkedVehicle.TypeId = int.Parse(parkVehicleViewModel.TypesId);
+                parkedVehicle.Brand = parkVehicleViewModel.Brand;
+                parkedVehicle.Color = parkVehicleViewModel.Color;
+                parkedVehicle.Model = parkVehicleViewModel.Model;
+                parkedVehicle.RegNr = parkVehicleViewModel.RegNr;
+                parkedVehicle.NrOfWheels = parkVehicleViewModel.NrOfWheels;
+                parkedVehicle.ParkingTime = DateTime.Now;
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(db.Members, "Id", "FName", parkedVehicle.Id);
-            ViewBag.TypeId = new SelectList(db.VehicleTypes, "Id", "TypeName", parkedVehicle.TypeId);
-            return View(parkedVehicle);
+            parkVehicleViewModel.Members = new SelectList(db.Members, "Id", "FName", parkVehicleViewModel.MemberId);
+            parkVehicleViewModel.Types = new SelectList(db.VehicleTypes, "Id", "TypeName", parkVehicleViewModel.TypesId);
+            return View(parkVehicleViewModel);
         }
 
         // GET: Garage/Edit/5

@@ -15,5 +15,7 @@ namespace Garage25_CodeAlong.Models.ViewModels
         public int NrOfWheels { get; set; }
         public SelectList Members { get; set; }
         public SelectList Types { get; set; }
+        public string MemberId { get; set; }
+        public string TypesId { get; set; }
     }
 }

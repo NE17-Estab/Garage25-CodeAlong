@@ -7,7 +7,7 @@
 <h2>Park</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Park","Garage",FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
@@ -26,7 +26,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Members, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("Owner", Model.Members, htmlAttributes: new { @class = "form-control" })
+           @* @Html.DropDownList("Owner", Model.Members, htmlAttributes: new { @class = "form-control" })*@
+            @Html.DropDownListFor(model => model.MemberId, Model.Members, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Members, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -34,7 +35,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Types, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("VehicleType", Model.Types, htmlAttributes: new { @class = "form-control" })
+            @*@Html.DropDownList("VehicleType", Model.Types, htmlAttributes: new { @class = "form-control" })*@
+            @Html.DropDownListFor(model=>model.TypesId, Model.Types, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Types, "", new { @class = "text-danger" })
         </div>
     </div>
