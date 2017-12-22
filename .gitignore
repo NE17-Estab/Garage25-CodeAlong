@@ -286,3 +286,9 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/Garage25-CodeAlong/Garage25-CodeAlong/Migrations/201712221049517_Init.resx
+/Garage25-CodeAlong/Garage25-CodeAlong/Migrations/201712221049517_Init.Designer.cs
+/Garage25-CodeAlong/Garage25-CodeAlong/Migrations/201712221049517_Init.cs
+/Garage25-CodeAlong/Garage25-CodeAlong/Migrations/201712221011274_Init2.resx
+/Garage25-CodeAlong/Garage25-CodeAlong/Migrations/201712221011274_Init2.Designer.cs
+/Garage25-CodeAlong/Garage25-CodeAlong/Migrations/201712221011274_Init2.cs
