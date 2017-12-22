@@ -9,19 +9,17 @@ namespace Garage25_CodeAlong.Models
 {
     public class Member
     {
-
-
-         
         public int Id { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
-        [Column(TypeName="datetime")]
-        public DateTime DateOfBirth { get; set; }
 
+        [Column(TypeName = "datetime2")]
+        public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
-        public string Address { get; set; }
+        public string Adress { get; set; }
         public string PhoneNr { get; set; }
 
-         public virtual ICollection<ParkedVehicle> ParkedVehicles { get; set; }
+        public virtual ICollection<ParkedVehicle> ParkedVehicles { get; set; }
+
     }
 }

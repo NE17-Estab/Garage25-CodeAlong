@@ -14,9 +14,9 @@ namespace Garage25_CodeAlong.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FName = c.String(),
                         LName = c.String(),
-                        DateOfBirth = c.DateTime(nullable: false),
+                        DateOfBirth = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         Email = c.String(),
-                        Address = c.String(),
+                        Adress = c.String(),
                         PhoneNr = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -25,7 +25,7 @@ namespace Garage25_CodeAlong.Migrations
                 "dbo.ParkedVehicles",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         RegNr = c.String(),
                         Color = c.String(),
                         Model = c.String(),
@@ -36,10 +36,10 @@ namespace Garage25_CodeAlong.Migrations
                         MemberId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Members", t => t.Id)
+                .ForeignKey("dbo.Members", t => t.MemberId, cascadeDelete: true)
                 .ForeignKey("dbo.VehicleTypes", t => t.TypeId, cascadeDelete: true)
-                .Index(t => t.Id)
-                .Index(t => t.TypeId);
+                .Index(t => t.TypeId)
+                .Index(t => t.MemberId);
             
             CreateTable(
                 "dbo.VehicleTypes",
@@ -55,9 +55,9 @@ namespace Garage25_CodeAlong.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.ParkedVehicles", "TypeId", "dbo.VehicleTypes");
-            DropForeignKey("dbo.ParkedVehicles", "Id", "dbo.Members");
+            DropForeignKey("dbo.ParkedVehicles", "MemberId", "dbo.Members");
+            DropIndex("dbo.ParkedVehicles", new[] { "MemberId" });
             DropIndex("dbo.ParkedVehicles", new[] { "TypeId" });
-            DropIndex("dbo.ParkedVehicles", new[] { "Id" });
             DropTable("dbo.VehicleTypes");
             DropTable("dbo.ParkedVehicles");
             DropTable("dbo.Members");

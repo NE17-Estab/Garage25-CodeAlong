@@ -32,27 +32,27 @@ namespace Garage25_CodeAlong.Migrations
                 FName = "Bob",
                 LName="Burger",
                 DateOfBirth = DateTime.Now.AddYears(-15),
-                Address="BurgerJoin",
+                Adress="BurgerJoin",
                 Email="bob@me.com",
                 PhoneNr="555-254697"},
                 new Member(){
                 FName = "Sara",
                 LName = "Burger",
                 DateOfBirth = DateTime.Now.AddYears(-10),
-                Address = "Un",
+                Adress = "Un",
                 Email = "sara@me.com",
                 PhoneNr = "555-200697"},
                 new Member(){
                 FName = "Bob",
                 LName = "Burger",
                 DateOfBirth = DateTime.Now.AddYears(-5),
-                Address = "BurgerJoin",
+                Adress = "BurgerJoin",
                 Email = "bob@me.com",
                 PhoneNr = "555-254697"});
 
                 context.SaveChanges();
 
-            context.ParkedVehicle.AddOrUpdate(x => x.RegNr,
+            context.ParkedVehicles.AddOrUpdate(x => x.RegNr,
                 new ParkedVehicle()
                 {
                     RegNr = "ABC123",

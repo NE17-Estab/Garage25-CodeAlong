@@ -11,7 +11,7 @@ namespace Garage25_CodeAlong.DataAccess
     {
         public GarageContext () : base("Garage25-CA") { }
         public DbSet<Member> Members { get; set; }
-        public DbSet<ParkedVehicleViewModel> ParkedVehicles { get; set; }
+        public DbSet<ParkedVehicle> ParkedVehicles { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
     }
 }

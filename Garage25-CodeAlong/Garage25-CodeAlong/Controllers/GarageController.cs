@@ -8,8 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garage25_CodeAlong.DataAccess;
 using Garage25_CodeAlong.Models;
-using Garage25_CodeAlong.Models.ViewModel;
-using System.Xml.Linq;
+using Garage25_CodeAlong.Models.ViewModels;
 
 namespace Garage25_CodeAlong.Controllers
 {
@@ -20,7 +19,7 @@ namespace Garage25_CodeAlong.Controllers
         // GET: Garage
         public ActionResult Index()
         {
-            var parkedVehicles = db.ParkedVehicles.Include(p => p.Member).Include(p => p.VehicleTypes);
+            var parkedVehicles = db.ParkedVehicles.Include(p => p.Member).Include(p => p.VehicleType);
             return View(parkedVehicles.ToList());
         }
 
@@ -45,25 +44,31 @@ namespace Garage25_CodeAlong.Controllers
             ParkVehicleViewModel model = new ParkVehicleViewModel();
             model.Members = new SelectList(db.Members, "Id", "FName");
             model.Types = new SelectList(db.VehicleTypes, "Id", "TypeName");
-            //ViewBag.Id = new SelectList(db.Members, "Id", "FName");
-            //ViewBag.TypeId = new SelectList(db.VehicleTypes, "Id", "TypeName");
+            //ViewBag.Id = 
+            //ViewBag.TypeId =
             return View(model);
         }
 
         // POST: Garage/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Park(/*[Bind(Include = "RegNr,Color,Model,Brand,NrOfWheels")]*/ ParkVehicleViewModel parkVehicleViewModel)
+        public ActionResult Park(ParkVehicleViewModel parkVehicleViewModel)
         {
             if (ModelState.IsValid)
             {
                 ParkedVehicle parkedVehicle = new ParkedVehicle();
                 parkedVehicle.MemberId = int.Parse(parkVehicleViewModel.MemberId);
                 parkedVehicle.TypeId = int.Parse(parkVehicleViewModel.TypesId);
-                //db.ParkedVehicles.Add();
-                //db.SaveChanges();
+                parkedVehicle.Brand = parkVehicleViewModel.Brand;
+                parkedVehicle.Color = parkVehicleViewModel.Color;
+                parkedVehicle.Model = parkVehicleViewModel.Model;
+                parkedVehicle.RegNr = parkVehicleViewModel.RegNr;
+                parkedVehicle.NrOfWheels = parkVehicleViewModel.NrOfWheels;
+                parkedVehicle.ParkingTime = DateTime.Now;
+                db.ParkedVehicles.Add(parkedVehicle);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -91,10 +96,10 @@ namespace Garage25_CodeAlong.Controllers
 
         // POST: Garage/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegNr,Color,Model,Brand,NrOfWheels,ParkingTime,TypeId,MemberId")] ParkedVehicleViewModel parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Color,Model,Brand,NrOfWheels,ParkingTime,TypeId,MemberId")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
