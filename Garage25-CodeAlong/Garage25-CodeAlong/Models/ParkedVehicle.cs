@@ -20,7 +20,7 @@ namespace Garage25_CodeAlong.Models
         public DateTime ParkingTime { get; set; }
 
        
-        public int TypeId { get; set; }
+        public int TypeId { get; set; }   
    //   [ForeignKey("MemberId")]
         public int MemberId { get; set; }
 
